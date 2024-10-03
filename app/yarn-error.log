@@ -1,0 +1,55 @@
+Arguments: 
+  /usr/local/bin/node /Users/allisonwang/.cache/node/corepack/yarn/1.22.19/bin/yarn.js add three-custom-shader-material
+
+PATH: 
+  /Users/allisonwang/.docker/bin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/allisonwang/.docker/bin:/Library/Frameworks/Python.framework/Versions/3.12/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.18.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: EACCES: permission denied, unlink '/Users/allisonwang/Library/Mobile Documents/com~apple~CloudDocs/GT/VIP/aivis/app/node_modules/@babel/runtime/LICENSE'
+
+npm manifest: 
+  {
+    "name": "voice-visualizer",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "dependencies": {
+      "@react-three/fiber": "^8.15.16",
+      "gl-noise": "^1.6.1",
+      "react": "^18.2.0",
+      "sentiment": "^5.0.2",
+      "three": "^0.158.0",
+      "three-custom-shader-material": "^5.4.0"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
