@@ -8,7 +8,7 @@ Before starting, ensure that you have the following installed on your machine:
 - **Node.js** (v14.x or later)
 - **npm** (v6.x or later)
 
-## Setup and Installation
+# Setup and Installation
 
 To set up the project locally, follow these steps:
 
