@@ -13,7 +13,7 @@ Before starting, ensure that you have the following installed on your machine:
 To set up the project locally, follow these steps:
 
 
-##  Clone the Repository
+### Clone the Repository
 ```bash
 git clone <repository-url>
 ```
