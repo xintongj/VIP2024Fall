@@ -12,22 +12,33 @@ Before starting, ensure that you have the following installed on your machine:
 
 To set up the project locally, follow these steps:
 
-```bash
+
 # Clone the Repository
+```bash
 git clone <repository-url>
+```
 
 # Navigate to the Project Directory
+```bash
 cd <project-directory>
+```
 
 # Install Dependencies
+```bash
 npm install
+```
 
 # If the above command fails, install the latest version of react-scripts manually
+```bash
 npm install react-scripts@latest
+```
 
 # Build the Project
+```bash
 npm run build
+```
 
 # Start the Development Server
+```bash
 npm run start
-
+```
