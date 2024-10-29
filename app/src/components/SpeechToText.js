@@ -11,10 +11,12 @@ const SpeechToText = ({ setParticleColor }) => {
   const analyserRef = useRef(null); // Audio analyser node
   const dataArrayRef = useRef(null); // Array to hold frequency data
 
-  const apiKey = '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'; // Replace with your ChatGPT API key
+  const apiKey = ''; // Replace with your ChatGPT API key
   const chatGPTApiUrl = 'https://api.openai.com/v1/chat/completions';
 
   useEffect(() => {
+    setParticleColor(0xffffff); // Set default color
+
     const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     if (SpeechRecognition) {
       recognitionRef.current = new SpeechRecognition();
@@ -34,13 +36,6 @@ const SpeechToText = ({ setParticleColor }) => {
         setIsListening(false);
       };
 
-      // Initialize AudioContext and AnalyserNode for frequency detection
-      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      analyserRef.current = audioContextRef.current.createAnalyser();
-      analyserRef.current.fftSize = 256; // Smaller size gives more detailed frequency information
-      const bufferLength = analyserRef.current.frequencyBinCount;
-      dataArrayRef.current = new Uint8Array(bufferLength); // Data array for frequency values
-    
     } else {
       console.error('Speech recognition is not supported in this browser.');
     }
@@ -82,97 +77,22 @@ const SpeechToText = ({ setParticleColor }) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = synth.getVoices()[1]; // Adjust as needed
     utterance.rate = 1.0; // Adjust speed
-
-    // Start frequency monitoring
-    monitorFrequency();
+    
 
     synth.speak(utterance);
   };
 
-  // Define the updateParticleColor function to update the particle color based on sentiment score
+  // // Define the updateParticleColor function to update the particle color based on sentiment score
   // const updateParticleColor = (score) => {
-  // // Assuming the score is between -1 and 1
-  // // Normalize the score to be between 0 and 1 for color interpolation
-  // const normalizedScore = (score + 1) / 2; // Now 0 to 1 (0 being most negative, 1 being most positive)
-  // // Interpolate between red and green based on the normalized score
-  // let colorEnd = score < 0 ? '#ff0000' : '#00ff00'
-  // // You can create more complex gradients with more colors if you like
-  // transitionColor(currentColor, colorEnd, score, true);
-  // // setParticleColor(color); // Update the color state in the parent component
+  //   // Assuming the score is between -1 and 1
+  //   // Normalize the score to be between 0 and 1 for color interpolation
+  //   const normalizedScore = (score + 1) / 2; // Now 0 to 1 (0 being most negative, 1 being most positive)
+  //   // Interpolate between red and green based on the normalized score
+  //   let colorEnd = score < 0 ? '#ff0000' : '#00ff00'
+  //   // You can create more complex gradients with more colors if you like
+  //   transitionColor(currentColor, colorEnd, score, true);
+  //   // setParticleColor(color); // Update the color state in the parent component
   // };
-
-
-  // Helper function to interpolate between two colors
-  const lerpColor = (a, b, amount) => { 
-    const ah = parseInt(a.replace(/#/g, ''), 16),
-          ar = ah >> 16, ag = ah >> 8 & 0xff, ab = ah & 0xff,
-          bh = parseInt(b.replace(/#/g, ''), 16),
-          br = bh >> 16, bg = bh >> 8 & 0xff, bb = bh & 0xff,
-          rr = ar + amount * (br - ar),
-          rg = ag + amount * (bg - ag),
-          rb = ab + amount * (bb - ab);
-  
-    return '#' + (((1 << 24) + (rr << 16) + (rg << 8) + rb) | 0).toString(16).slice(1);
-  };
-
-  // Monitor frequency changes and update the particle color
-  const monitorFrequency = () => {
-    const checkFrequency = () => {
-      analyserRef.current.getByteFrequencyData(dataArrayRef.current); // Get the frequency data
-      // The frequency data is all zeros
-      const dominantFrequency = getDominantFrequency(dataArrayRef.current); // Find the dominant frequency
-      updateParticleColorByFrequency(dominantFrequency); // Update particle color based on frequency
-
-      if (window.speechSynthesis.speaking) {
-        requestAnimationFrame(checkFrequency); // Keep checking frequency during speech
-      }
-    };
-
-    requestAnimationFrame(checkFrequency);
-  };
-
-  // Get the dominant frequency from the frequency data array
-  const getDominantFrequency = (dataArray) => {
-    let maxAmplitude = -Infinity;
-    let dominantFrequencyIndex = 0;
-
-    // Find the frequency bin with the highest amplitude
-    dataArray.forEach((value, index) => {
-      if (value > maxAmplitude) {
-        maxAmplitude = value;
-        dominantFrequencyIndex = index;
-      }
-    });
-
-    // Convert the index to an actual frequency in Hz
-    const nyquist = audioContextRef.current.sampleRate / 2;
-    const dominantFrequency = (dominantFrequencyIndex / dataArray.length) * nyquist;
-
-    return dominantFrequency;
-  };
-
-  // Update particle color based on frequency value
-  const updateParticleColorByFrequency = (frequency) => {
-    // Normalize frequency (20Hz - 20kHz) to (0-1)
-    const minFrequency = 20;
-    const maxFrequency = 20000;
-    const normalizedFrequency = (frequency - minFrequency) / (maxFrequency - minFrequency);
-
-    // Map frequency to a color range (e.g., from blue to red)
-    const colorStart = '#00f'; // Blue for low frequencies
-    const colorEnd = '#f00'; // Red for high frequencies
-    const interpolatedColor = lerpColor(colorStart, colorEnd, normalizedFrequency);
-    // setParticleColor(interpolatedColor);
-  };
-
-
-
-
-
-
-
-
-
 
 
   // // Applies color transition
@@ -239,8 +159,8 @@ const SpeechToText = ({ setParticleColor }) => {
 
   return (
     <div className="speech-to-text-container">
-      <textarea value={transcript} readOnly placeholder="Transcription will appear here" className="transcript-output"></textarea>
-      <textarea value={reply} readOnly placeholder="Response will appear here" className="reply-output"></textarea>
+      <textarea value={transcript} readOnly placeholder="Transcription will appear here" className="transcript-output" ></textarea>
+      <textarea value={reply} readOnly placeholder="Response will appear here" className="reply-output" ></textarea>
       <div className="button-container">
         <button onClick={startListening} disabled={isListening}>Start Listening</button>
         <button onClick={stopListening} disabled={!isListening}>Stop Listening</button>

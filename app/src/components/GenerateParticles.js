@@ -37,7 +37,7 @@ const GenerateParticles = ({ particleColor }) => {
   }, []);
 
   const particlesMaterial = useMemo(() => new THREE.PointsMaterial({
-    color: particleColor || 0x00ffff, // Use particleColor prop, default is light blue
+    color: particleColor || 0x000000, // Use particleColor prop, default is white
     size: 0.1,
   }), [particleColor]);
 
