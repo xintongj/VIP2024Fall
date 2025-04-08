@@ -24,6 +24,7 @@ function App() {
           <button onClick={() => setShape("sphere")}>Sphere</button>
           <button onClick={() => setShape("cube")}>Cube</button>
           <button onClick={() => setShape("pyramid")}>Pyramid</button>
+          <button onClick={() => setShape("blob")}>Blob</button>
         </div>
       </div>
     );

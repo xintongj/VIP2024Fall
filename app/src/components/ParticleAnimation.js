@@ -4,6 +4,7 @@ import React from 'react';
 import GenerateSphere from './GenerateSphere';
 import GenerateCube from './GenerateCube';
 import GeneratePyramid from './GeneratePyramid';
+import GenerateBlob from "./GenerateBlob";
 
 const ParticleAnimation = ({ particleColor, shape}) => {
   if (shape === "sphere") {
@@ -18,6 +19,10 @@ const ParticleAnimation = ({ particleColor, shape}) => {
     return (
       <GeneratePyramid particleColor={particleColor} />
     );
+  } else if (shape == "blob") {
+    return (
+      <GenerateBlob particleColor={particleColor} />
+    )
   }
 };
 
