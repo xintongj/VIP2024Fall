@@ -1,12 +1,17 @@
 // ParticleAnimation.js
 
 import React from 'react';
-import GenerateParticles from './GenerateParticles';
+import GenerateSphere from './GenerateSphere';
+import GenerateCube from './GenerateCube';
+import GeneratePyramid from './GeneratePyramid';
 
-const ParticleAnimation = ({ particleColor }) => {
+// new shapes
+import GenerateObject from './GenerateObject';
+
+const ParticleAnimation = ({ particleColor, shape }) => {
   return (
-    <GenerateParticles particleColor={particleColor} />
-  );
-};
+    <GenerateObject particleColor={particleColor} ObjectShape={ shape } />
+  )
+}
 
 export default ParticleAnimation;

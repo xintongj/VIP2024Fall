@@ -11,7 +11,7 @@ const SpeechToText = ({ setParticleColor }) => {
   const analyserRef = useRef(null); // Audio analyser node
   const dataArrayRef = useRef(null); // Array to hold frequency data
 
-  const apiKey = ''; // Replace with your ChatGPT API key
+  const apiKey = '' // Replace with your ChatGPT API key
   const chatGPTApiUrl = 'https://api.openai.com/v1/chat/completions';
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const SpeechToText = ({ setParticleColor }) => {
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
+        model: "gpt-4o-mini",
         messages: [{ role: 'user', content: text }],
       }),
     })
