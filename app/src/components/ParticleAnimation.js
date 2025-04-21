@@ -4,26 +4,14 @@ import React from 'react';
 import GenerateSphere from './GenerateSphere';
 import GenerateCube from './GenerateCube';
 import GeneratePyramid from './GeneratePyramid';
-import GenerateBlob from "./GenerateBlob";
 
-const ParticleAnimation = ({ particleColor, shape}) => {
-  if (shape === "sphere") {
-    return (
-      <GenerateSphere particleColor={particleColor} />
-    );
-  } else if (shape === "cube") {
-    return (
-      <GenerateCube particleColor={particleColor} />
-    );
-  } else if (shape === "pyramid") {
-    return (
-      <GeneratePyramid particleColor={particleColor} />
-    );
-  } else if (shape == "blob") {
-    return (
-      <GenerateBlob particleColor={particleColor} />
-    )
-  }
-};
+// new shapes
+import GenerateObject from './GenerateObject';
+
+const ParticleAnimation = ({ particleColor, shape }) => {
+  return (
+    <GenerateObject particleColor={particleColor} ObjectShape={ shape } />
+  )
+}
 
 export default ParticleAnimation;

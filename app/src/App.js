@@ -7,7 +7,7 @@ import './styles.css';
 
 function App() {
     const [particleColor, setParticleColor] = useState(0x00ffff); // Default color
-    const [shape, setShape] = useState("sphere");
+    const [shape, setShape] = useState("Icosahedron");
 
     return (
       <div>
@@ -21,10 +21,11 @@ function App() {
         </div>
 
         <div className="shape_buttons">
-          <button onClick={() => setShape("sphere")}>Sphere</button>
-          <button onClick={() => setShape("cube")}>Cube</button>
-          <button onClick={() => setShape("pyramid")}>Pyramid</button>
-          <button onClick={() => setShape("blob")}>Blob</button>
+          <button onClick={() => setShape("Icosahedron")}>1</button>
+          <button onClick={() => setShape("Box")}>2</button>
+          <button onClick={() => setShape("Cone")}>3</button>
+          <button onClick={() => setShape("Torus")}>4</button>
+          <button onClick={() => setShape("Blob")}>5</button>
         </div>
       </div>
     );
